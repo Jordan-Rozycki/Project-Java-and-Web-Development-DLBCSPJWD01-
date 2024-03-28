@@ -1,0 +1,24 @@
+@import url('https://fonts.cdnfonts.com/css/arcade-classic');
+
+body {
+    background-color: purple;
+    font-family: 'ArcadeClassic', sans-serif;
+}
+
+.heading {
+    border: 4px yellow solid;
+    border-radius: 30px;
+
+    background-color: blue;
+    width: 40%;
+    margin: auto;
+    padding: 1px;
+
+    text-align: center;
+    font-size: 30px;
+
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+}
+
