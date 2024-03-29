@@ -1,5 +1,7 @@
+/* Below is the importing of the Arcade Classic font from cdnfonts.com */
 @import url('https://fonts.cdnfonts.com/css/arcade-classic');
 
+/* This code block changes the apparence of the whole website */
 body {
     background-color: purple;
     font-family: 'ArcadeClassic', sans-serif;
@@ -16,6 +18,7 @@ body {
     align-items: center;
 }
 
+/*This code block manages the apperence of the 'Lofi Arcade' header on the website*/
 .heading {
     border: 4px yellow solid;
     border-radius: 30px;
@@ -32,6 +35,7 @@ body {
     -webkit-text-stroke-color: black;
 }
 
+/* This code block manages the apperence of the game buttons individually*/
 .game {
     border: 4px yellow solid;
     border-radius: 30px;
@@ -41,6 +45,7 @@ body {
     overflow: hidden;
 }
 
+/* This code block manages the game buttons section as a whole*/
 .game-buttons {
     display: flex;
     /* border: 5px black solid; */
@@ -51,16 +56,19 @@ body {
     /* margin-top: 15vh; */
 }
 
+/* This code block manages the apperence of the images displayed in the game button borders */
 .img {
     width: 100%;
     height: 100%;
 }
 
+/* This code block manages the border surrounding the play button and song title within the music player */
 .music {
     border: 4px yellow solid;
     display: flex;
 }
 
+/* This code block manages the entire music-player section as a whole */
 .music-player {
     display: flex;
     border: 4px red dotted;
@@ -74,10 +82,12 @@ body {
     /* margin-top: 15vh; */
 }
 
+/* This code block manages the apperence of the shuffle button within the music-player */
 .shuffle-button {
     border: 4px black dotted;
 }
 
+/* This code block manages the apperence of the song title within the music-player */
 .song-title {
     -webkit-text-fill-color: white;
     -webkit-text-stroke-width: 0.1em;
@@ -86,6 +96,7 @@ body {
     font-size: 2rem;
 }
 
+/* This code block manages the apperence of the image within the shuffle button class */
 .shuffle-img {
     width: 50px;
     height: 50px;
