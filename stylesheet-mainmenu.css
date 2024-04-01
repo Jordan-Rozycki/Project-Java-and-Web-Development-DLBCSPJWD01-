@@ -1,103 +1,121 @@
 /* Below is the importing of the Arcade Classic font from cdnfonts.com */
-@import url('https://fonts.cdnfonts.com/css/arcade-classic');
+@import url("https://fonts.cdnfonts.com/css/arcade-classic");
 
 /* This code block changes the apparence of the whole website */
 body {
-    background-color: purple;
-    font-family: 'ArcadeClassic', sans-serif;
+  /* background-color: transparent; */
+  font-family: "ArcadeClassic", sans-serif;
 
-    margin: 0;
-    padding: 0;
+  overflow: hidden;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  margin: 0;
+  padding: 0;
 
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    align-items: center;
+  height: 100vh;
+
+  align-items: center;
 }
 
 /*This code block manages the apperence of the 'Lofi Arcade' header on the website*/
 .heading {
-    border: 4px yellow solid;
-    border-radius: 30px;
+  border: 4px yellow solid;
+  border-radius: 30px;
 
-    background-color: blue;
-    width: 40%;
-    /* height: 10%; */
+  background: linear-gradient(to right, lightblue, darkblue);
+  width: 40%;
+  /* height: 10%; */
 
-    text-align: center;
-    font-size: 2rem;
+  text-align: center;
+  font-size: 2rem;
 
-    -webkit-text-fill-color: white;
-    -webkit-text-stroke-width: 0.1em;
-    -webkit-text-stroke-color: black;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: 0.1em;
+  -webkit-text-stroke-color: black;
 }
 
 /* This code block manages the apperence of the game buttons individually*/
 .game {
-    border: 4px yellow solid;
-    border-radius: 30px;
+  border: 4px yellow solid;
+  border-radius: 30px;
 
-    width: 25%;
+  width: 25%;
 
-    overflow: hidden;
+  overflow: hidden;
+
+  transition: 300ms ease-in-out;
+}
+
+.game:hover {
+  transform: scale(1.2);
 }
 
 /* This code block manages the game buttons section as a whole*/
 .game-buttons {
-    display: flex;
-    /* border: 5px black solid; */
-    justify-content: space-around;
+  display: flex;
+  /* border: 5px black solid; */
+  justify-content: space-around;
 
-    /* height: 50%; */
+  /* height: 50%; */
 
-    /* margin-top: 15vh; */
+  /* margin-top: 15vh; */
 }
 
 /* This code block manages the apperence of the images displayed in the game button borders */
 .img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 /* This code block manages the border surrounding the play button and song title within the music player */
 .music {
-    border: 4px yellow solid;
-    display: flex;
+  border: 4px yellow solid;
+  display: flex;
 }
 
 /* This code block manages the entire music-player section as a whole */
 .music-player {
-    display: flex;
-    border: 4px red dotted;
-    justify-content: flex-end;
+  display: flex;
+  border: 4px red dotted;
+  justify-content: flex-end;
 
-    align-self: flex-end;
-    align-items: center;
+  align-self: flex-end;
+  align-items: center;
 
-    /* height: 10%; */
+  /* height: 10%; */
 
-    /* margin-top: 15vh; */
+  /* margin-top: 15vh; */
 }
 
 /* This code block manages the apperence of the shuffle button within the music-player */
 .shuffle-button {
-    border: 4px black dotted;
+  border: 4px black dotted;
 }
 
 /* This code block manages the apperence of the song title within the music-player */
 .song-title {
-    -webkit-text-fill-color: white;
-    -webkit-text-stroke-width: 0.1em;
-    -webkit-text-stroke-color: black;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: 0.1em;
+  -webkit-text-stroke-color: black;
 
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 /* This code block manages the apperence of the image within the shuffle button class */
 .shuffle-img {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
+}
+
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  max-height: 100%;
+  z-index: -100;
+  object-fit: cover;
 }

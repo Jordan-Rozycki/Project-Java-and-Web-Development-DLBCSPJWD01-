@@ -1,45 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lofi Arcade</title>
-    <link rel="stylesheet" href="stylesheet-mainmenu.css">
-    <link href="https://fonts.cdnfonts.com/css/arcade-classic" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet-mainmenu.css" />
+    <link
+      href="https://fonts.cdnfonts.com/css/arcade-classic"
+      rel="stylesheet"
+    />
     <script scr="mainmenu.js"></script>
-</head>
-<body>
+  </head>
+  <body>
+    <video autoplay muted loop>
+      <source
+        src="Vids/anime-girl-lying-on-the-roof-watching-the-aurora-in-the-snow-moewalls-com.mp4"
+        type="video/mp4"
+      />
+    </video>
     <!-- This code block goes about the heading for the website -->
     <div class="heading">
-        <h1>Lofi Arcade</h1>
+      <h1>Lofi Arcade</h1>
     </div>
 
     <!-- This code block creates the 3 buttons for the 3 different games as well as placing images inside of them -->
     <div class="game-buttons">
-        <div class="game">
-            <img class="img" src="img/Snake.png" alt="Snake game picture">
-        </div>
-        <div class="game">
-            <img class="img" src="img/brick breaker.png" alt="Brick breaker game picture">
-        </div>
-        <div class="game">
-            <img class="img" src="img/pong.png" alt="Snake game picture">
-        </div>
+      <div class="game">
+        <a href="Games_code/Snake/index.html">
+          <img class="img" src="img/Snake.png" alt="Snake game picture" />
+        </a>
+      </div>
+      <div class="game">
+        <a href="Games_code/Brick breaker/index.html">
+          <img
+            class="img"
+            src="img/brick breaker.png"
+            alt="Brick breaker game picture"
+          />
+        </a>
+      </div>
+      <div class="game">
+        <a href="Games_code/Pong/index.html">
+          <img class="img" src="img/pong.png" alt="Snake game picture" />
+        </a>
+      </div>
     </div>
 
     <!-- This code block creates the 'music-player' that has a shuffle button, a play button and the song titles -->
     <div class="music-player">
-        <div class="shuffle-button">
-            <img class="shuffle-img" src="img/shuffle.png" alt="Shuffle">
+      <div class="shuffle-button">
+        <img class="shuffle-img" src="img/shuffle.png" alt="Shuffle" />
+      </div>
+      <div class="music">
+        <div class="play-button">
+          <p>play button</p>
         </div>
-        <div class="music">
-            <div class="play-button">
-                <p>play button</p>
-            </div>
-            <div class="song-name">
-                <p class="song-title">song name webbfgdrgdrguirgh</p>
-            </div>
+        <div class="song-name">
+          <p class="song-title">song name</p>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
