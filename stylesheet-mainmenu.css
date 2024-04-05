@@ -1,10 +1,15 @@
 /* Below is the importing of the Arcade Classic font from cdnfonts.com */
 @import url("https://fonts.cdnfonts.com/css/arcade-classic");
 
+@font-face {
+  font-family: Scribble;
+  src: url("../Project-Java-and-Web-Development-DLBCSPJWD01-/fonts/Scribble\ Note\ DEMO\ Regular\ 400.otf");
+}
+
 /* This code block changes the apparence of the whole website */
 body {
   /* background-color: transparent; */
-  font-family: "ArcadeClassic", sans-serif;
+  font-family: "Scribble", sans-serif;
 
   overflow: hidden;
 
@@ -22,38 +27,41 @@ body {
 
 /*This code block manages the apperence of the 'Lofi Arcade' header on the website*/
 .heading {
-  border: 4px yellow solid;
-  border-radius: 30px;
-
-  background: linear-gradient(-45deg, lightblue, darkblue, lightblue);
-  background-size: 400%;
-
-  animation: heading-animation 3s linear infinite;
-
   width: 40%;
-  /* height: 10%; */
+  height: 15vh;
 
   text-align: center;
-  font-size: 2rem;
+  --glow-color: rgba(255, 255, 255, 0.555);
+  text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color),
+    0 0 40px var(--glow-color), 0 0 80px var(--glow-color),
+    0 0 120px var(--glow-color);
+  font-size: 3rem;
 
   -webkit-text-fill-color: white;
   /* -webkit-text-stroke-width: 0.1em; */
   /* -webkit-text-stroke-color: black; */
+
+  animation: pulse 3s infinite alternate;
 }
 
-@keyframes heading-animation {
+@keyframes pulse {
   0% {
-    background-position: left;
+    transform: scale(1);
   }
   100% {
-    background-position: right;
+    transform: scale(1.1);
   }
 }
 
 /* This code block manages the apperence of the game buttons individually*/
 .game {
-  border: 4px yellow solid;
+  border: 4px white solid;
   border-radius: 30px;
+
+  --glow-color: rgba(255, 255, 255, 0.555);
+  box-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color),
+    0 0 40px var(--glow-color), 0 0 80px var(--glow-color),
+    0 0 120px var(--glow-color);
 
   width: 25%;
 
@@ -92,35 +100,29 @@ body {
 /* This code block manages the entire music-player section as a whole */
 .music-player {
   display: flex;
-  border: 4px red dotted;
+  /* border: 4px red dotted; */
   justify-content: flex-end;
 
   align-self: flex-end;
   align-items: center;
 
-  /* height: 10%; */
+  height: 15vh;
 
-  /* margin-top: 15vh; */
-}
-
-/* This code block manages the apperence of the shuffle button within the music-player */
-.shuffle-button {
-  border: 4px black dotted;
+  margin-right: 1%;
 }
 
 /* This code block manages the apperence of the song title within the music-player */
 .song-title {
   -webkit-text-fill-color: white;
-  -webkit-text-stroke-width: 0.1em;
-  -webkit-text-stroke-color: black;
+  --glow-color: rgba(255, 255, 255, 0.555);
+  text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color),
+    0 0 40px var(--glow-color), 0 0 80px var(--glow-color),
+    0 0 120px var(--glow-color);
 
-  font-size: 2rem;
-}
+  height: 5vh;
+  align-self: flex-end;
 
-/* This code block manages the apperence of the image within the shuffle button class */
-.shuffle-img {
-  width: 50px;
-  height: 50px;
+  font-size: 3rem;
 }
 
 video {
