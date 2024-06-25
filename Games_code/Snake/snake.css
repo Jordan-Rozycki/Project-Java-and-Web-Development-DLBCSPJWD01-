@@ -75,14 +75,14 @@ video {
   /* border: 1px solid blue; */
   width: 100%;
   margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .back {
   text-decoration: none;
-  display: flex;
-  justify-content: space-around;
 
-  display: inline-block;
+  /* display: inline-block; */
   width: 9%;
   height: 10%;
   /* border: 1px solid red; */
@@ -107,9 +107,6 @@ video {
 }
 
 .song-title {
-  display: flex;
-  justify-content: space-around;
-
   text-align: right;
   -webkit-text-fill-color: lightblue;
   --glow-color: rgba(0, 204, 255, 0.555);
@@ -118,13 +115,13 @@ video {
     0 0 120px var(--glow-color);
   font-size: 3rem;
 
-  display: inline-block;
+  /* display: inline-block; */
   width: 8%;
   height: 100px;
   /* border: 1px solid green; */
   /* float: right; */
-  position: absolute;
-  right: 0;
+  /* position: absolute;
+  right: 0; */
   margin-right: 25px;
   margin-top: 1.2%;
   /* top: 0; */

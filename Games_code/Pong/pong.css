@@ -89,7 +89,7 @@ video {
   margin-left: 25px;
 
   text-align: center;
-  --glow-color: rgba(101, 235, 101, 0.363);
+  --glow-color: rgba(37, 235, 37, 0.411);
   text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color),
     0 0 40px var(--glow-color), 0 0 80px var(--glow-color),
     0 0 120px var(--glow-color);

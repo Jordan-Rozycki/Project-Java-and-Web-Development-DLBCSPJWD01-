@@ -20,27 +20,69 @@ var foodY;
 
 var gameOver = false;
 
+//Global variables for game reset
+var GameListener;
+var GameUpdater;
+
 window.onload = function() {
     board = document.getElementById("board");
     board.height = rows * blockSize;
     board.width = cols * blockSize;
     context = board.getContext("2d"); //used for drawing on the board
+    initialize();
+}
+
+function initialize() {
+    snakeX = blockSize * 5;
+    snakeY = blockSize * 5;
+    velocityX = 0;
+    velocityY = 0;
+    snakeBody = [];
 
     placeFood();
     document.addEventListener("keyup", changeDirection);
     // update();
-    setInterval(update, 1000/10); //100 milliseconds
+    GameUpdater = setInterval(update, 1000/10); //100 milliseconds
+}
+
+function reset(e) {
+    if (e.code == "Space") {
+        initialize();
+        document.removeEventListener("keyup", reset);
+    };
+}
+
+function gameOverScreen() {
+    context.fillStyle = "black";
+    context.fillRect(0, 0, board.width, board.height);
+    context.fillStyle = "red";
+    context.font = "50px Scribble";
+    if (gameOver) {
+        context.fillStyle="lightPink";
+        context.shadowBlur=50;
+        context.shadowColor="red";
+        context.fillText("Game Over", 10*blockSize-80, 10*blockSize);
+        context.fillText("Press space to resart", 10*blockSize-150, 10*blockSize+40);
+    }
+
+    document.addEventListener("keyup", reset);
+    console.log("Game is over");
 }
 
 function update() {
-    if (gameOver) {
-        return;
-    }
+    console.log("Updating");
+    //if (gameOver) {
+        //return;
+    //}
 
+    //board
     context.fillStyle="black";
     context.fillRect(0, 0, board.width, board.height);
 
-    context.fillStyle="red";
+    //food
+    context.fillStyle="lightPink";
+    context.shadowBlur=50;
+    context.shadowColor="Red";
     context.fillRect(foodX, foodY, blockSize, blockSize);
 
     if (snakeX == foodX && snakeY == foodY) {
@@ -55,24 +97,30 @@ function update() {
         snakeBody[0] = [snakeX, snakeY];
     }
 
-    context.fillStyle="lime";
+    //snake
+    context.fillStyle="lightBlue";
+    context.shadowBlur=50;
+    context.shadowColor="Blue";
     snakeX += velocityX * blockSize;
     snakeY += velocityY * blockSize;
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
     for (let i = 0; i < snakeBody.length; i++) {
         context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
     }
+    context.shadowBlur=0;
 
     //game over conditions
-    if (snakeX < 0 || snakeX > cols*blockSize || snakeY < 0 || snakeY > rows*blockSize) {
+    if (snakeX < 0 || snakeX >= cols*blockSize || snakeY < 0 || snakeY >= rows*blockSize) {
         gameOver = true;
-        alert("Game Over");
+        clearInterval(GameUpdater);
+        gameOverScreen();
     }
 
     for (let i = 0; i < snakeBody.length; i++) {
         if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
             gameOver = true;
-            alert("Game Over");
+            clearInterval(GameUpdater);
+            gameOverScreen();
         }
     }
 }

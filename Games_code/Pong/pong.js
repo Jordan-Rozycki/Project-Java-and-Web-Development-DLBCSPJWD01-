@@ -14,7 +14,7 @@ let player1 = {
     y : boardHeight/2,
     width: playerWidth,
     height: playerHeight,
-    velocityY : 0
+    velocityY : 1.5
 }
 
 let player2 = {
@@ -22,7 +22,7 @@ let player2 = {
     y : boardHeight/2,
     width: playerWidth,
     height: playerHeight,
-    velocityY : 0
+    velocityY : 3
 }
 
 //ball
@@ -30,15 +30,23 @@ let ballWidth = 10;
 let ballHeight = 10;
 let ball = {
     x : boardWidth/2,
-    y : boardHeight/2,
+    y : Math.floor(Math.random()*boardHeight),
     width: ballWidth,
     height: ballHeight,
     velocityX : 1,
-    velocityY : 2
+    velocityY : (Math.random() < 0.5) ? -2:2
 }
 
 let player1Score = 0;
 let player2Score = 0;
+
+var keyState = {};    
+window.addEventListener('keydown',function(e){
+    keyState[e.code] = true;
+},true);    
+window.addEventListener('keyup',function(e){
+    keyState[e.code] = false;
+},true);
 
 window.onload = function() {
     board = document.getElementById("board");
@@ -48,35 +56,36 @@ window.onload = function() {
 
     //draw initial player1
     context.fillStyle="skyblue";
+    context.shadowBlur = 50;
+    context.shadowColor= "Blue";
     context.fillRect(player1.x, player1.y, playerWidth, playerHeight);
 
     requestAnimationFrame(update);
-    document.addEventListener("keyup", movePlayer);
+    //document.addEventListener("keydown", movePlayer);
 }
 
 function update() {
+    movePlayer();
     requestAnimationFrame(update);
     context.clearRect(0, 0, board.width, board.height);
 
     // player1
     context.fillStyle = "skyblue";
-    let nextPlayer1Y = player1.y + player1.velocityY;
-    if (!outOfBounds(nextPlayer1Y)) {
-        player1.y = nextPlayer1Y;
-    }
+    context.shadowBlur = 10;
+    context.shadowColor = "Blue";
+    
     // player1.y += player1.velocityY;
     context.fillRect(player1.x, player1.y, playerWidth, playerHeight);
 
     // player2
-    let nextPlayer2Y = player2.y + player2.velocityY;
-    if (!outOfBounds(nextPlayer2Y)) {
-        player2.y = nextPlayer2Y;
-    }
+    
     // player2.y += player2.velocityY;
     context.fillRect(player2.x, player2.y, playerWidth, playerHeight);
 
     // ball
-    context.fillStyle = "white";
+    context.fillStyle = "lightPink";
+    context.shadowBlur = 10;
+    context.shadowColor = "Red";
     ball.x += ball.velocityX;
     ball.y += ball.velocityY;
     context.fillRect(ball.x, ball.y, ballWidth, ballHeight);
@@ -118,7 +127,10 @@ function update() {
     }
 
     //score
-    context.font = "45px sans-serif";
+    context.font = "45px Scribble";
+    context.fillStyle = "lightPink";
+    context.shadowBlur = 10;
+    context.shadowColor = "red";
     context.fillText(player1Score, boardWidth/5, 45);
     context.fillText(player2Score, boardWidth*4/5 - 45, 45);
 
@@ -135,19 +147,18 @@ function outOfBounds(yPosition) {
 
 function movePlayer(e) {
     //player1
-    if (e.code == "KeyW") {
-        player1.velocityY = -3;
+    if (player1.y + 0.5 * player1.height > ball.y && !outOfBounds(player1.y - player1.velocityY)) {
+        player1.y -= player1.velocityY;
     }
-    else if (e.code == "KeyS") {
-        player1.velocityY = 3;
+    else if (player1.y + 0.5 * player1.height < ball.y && !outOfBounds(player1.y + player1.velocityY)) {
+        player1.y += player1.velocityY;
     }
-
     //player2
-    if (e.code == "ArrowUp") {
-        player2.velocityY = -3;
+    if (keyState["ArrowUp"] && !outOfBounds(player2.y - player2.velocityY)) {
+        player2.y -= player2.velocityY;
     }
-    else if (e.code == "ArrowDown") {
-        player2.velocityY = 3;
+    else if (keyState["ArrowDown"] && !outOfBounds(player2.y + player2.velocityY)) {
+        player2.y += player2.velocityY;
     }
 }
 
@@ -161,10 +172,10 @@ function detectCollision(a, b) {
 function resetGame(direction) {
     ball = {
         x : boardWidth/2,
-        y : boardHeight/2,
+        y : Math.floor(Math.random()*boardHeight),
         width: ballWidth,
         height: ballHeight,
         velocityX : direction,
-        velocityY : 2
+        velocityY : (Math.random() < 0.5) ? -2:2
     }
 }

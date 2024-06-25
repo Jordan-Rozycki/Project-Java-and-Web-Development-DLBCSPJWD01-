@@ -7,7 +7,7 @@ let context;
 //players
 let playerWidth = 80; //500 for testing, 80 normal
 let playerHeight = 10;
-let playerVelocityX = 10; //move 10 pixels each time
+let playerVelocityX = 5; //move 10 pixels each time
 
 let player = {
     x : boardWidth/2 - playerWidth/2,
@@ -24,11 +24,11 @@ let ballVelocityX = 3; //15 for testing, 3 normal
 let ballVelocityY = 2; //10 for testing, 2 normal
 
 let ball = {
-    x : boardWidth/2,
+    x : Math.floor(Math.random()*boardWidth),
     y : boardHeight/2,
     width: ballWidth,
     height: ballHeight,
-    velocityX : ballVelocityX,
+    velocityX : (Math.random() < 0.5) ? ballVelocityX:ballVelocityX * -1,
     velocityY : ballVelocityY
 }
 
@@ -48,6 +48,14 @@ let blockY = 45;
 let score = 0;
 let gameOver = false;
 
+var keyState = {};    
+window.addEventListener('keydown',function(e){
+    keyState[e.code] = true;
+},true);    
+window.addEventListener('keyup',function(e){
+    keyState[e.code] = false;
+},true);
+
 window.onload = function() {
     board = document.getElementById("board");
     board.height = boardHeight;
@@ -59,13 +67,13 @@ window.onload = function() {
     context.fillRect(player.x, player.y, player.width, player.height);
 
     requestAnimationFrame(update);
-    document.addEventListener("keydown", movePlayer);
 
     //create blocks
     createBlocks();
 }
 
 function update() {
+    movePlayer();
     requestAnimationFrame(update);
     //stop drawing
     if (gameOver) {
@@ -74,11 +82,15 @@ function update() {
     context.clearRect(0, 0, board.width, board.height);
 
     // player
-    context.fillStyle = "lightgreen";
+    context.fillStyle = "lightGreen";
+    context.shadowBlur = 10;
+    context.shadowColor = "Green";
     context.fillRect(player.x, player.y, player.width, player.height);
 
     // ball
     context.fillStyle = "white";
+    context.shadowBlur = 50;
+    context.shadowColor = "white";
     ball.x += ball.velocityX;
     ball.y += ball.velocityY;
     context.fillRect(ball.x, ball.y, ball.width, ball.height);
@@ -101,13 +113,18 @@ function update() {
     }
     else if (ball.y + ball.height >= boardHeight) {
         // if ball touches bottom of canvas
-        context.font = "20px sans-serif";
-        context.fillText("Game Over: Press 'Space' to Restart", 80, 400);
+        context.font = "40px Scribble";
+        context.fillStyle = "Pink";
+        context.shadowBlur = 50;
+        context.shadowColor = "Pink";
+        context.fillText("Game Over: Press 'Space' to Restart", 35, 400);
         gameOver = true;
     }
 
     //blocks
     context.fillStyle = "skyblue";
+    context.shadowBlur = 50;
+    context.shadowColor = "Blue";
     for (let i = 0; i < blockArray.length; i++) {
         let block = blockArray[i];
         if (!block.break) {
@@ -131,6 +148,10 @@ function update() {
     if (blockCount == 0) {
         score += 100*blockRows*blockColumns; //bonus points :)
         blockRows = Math.min(blockRows + 1, blockMaxRows);
+        ball.x = Math.floor(Math.random()*boardWidth),
+        ball.y = boardHeight/2,
+        ball.velocityX = (Math.random() < 0.5) ? ballVelocityX:ballVelocityX * -1,
+        ball.velocityY = ballVelocityY
         createBlocks();
     }
 
@@ -143,22 +164,22 @@ function outOfBounds(xPosition) {
     return (xPosition < 0 || xPosition + playerWidth > boardWidth);
 }
 
-function movePlayer(e) {
+function movePlayer() {
     if (gameOver) {
-        if (e.code == "Space") {
+        if (keyState["Space"]) {
             resetGame();
             console.log("RESET");
         }
         return;
     }
-    if (e.code == "ArrowLeft") {
+    if (keyState["ArrowLeft"]) {
         // player.x -= player.velocityX;
         let nextplayerX = player.x - player.velocityX;
         if (!outOfBounds(nextplayerX)) {
             player.x = nextplayerX;
         }
     }
-    else if (e.code == "ArrowRight") {
+    else if (keyState["ArrowRight"]) {
         let nextplayerX = player.x + player.velocityX;
         if (!outOfBounds(nextplayerX)) {
             player.x = nextplayerX;
@@ -217,11 +238,11 @@ function resetGame() {
         velocityX : playerVelocityX
     }
     ball = {
-        x : boardWidth/2,
+        x : Math.floor(Math.random()*boardWidth),
         y : boardHeight/2,
         width: ballWidth,
         height: ballHeight,
-        velocityX : ballVelocityX,
+        velocityX : (Math.random() < 0.5) ? ballVelocityX:ballVelocityX * -1,
         velocityY : ballVelocityY
     }
     blockArray = [];
