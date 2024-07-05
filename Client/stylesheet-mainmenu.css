@@ -1,0 +1,184 @@
+/* Below is the importing of the Arcade Classic font from cdnfonts.com */
+@import url("https://fonts.cdnfonts.com/css/arcade-classic");
+
+@font-face {
+  font-family: Scribble;
+  src: url("../../fonts/Scribble\ Note\ DEMO\ Regular\ 400.otf");
+}
+
+/* This code block changes the apparence of the whole website */
+body {
+  /* background-color: transparent; */
+  font-family: "Scribble", sans-serif;
+
+  overflow: hidden;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: black;
+
+  height: 100vh;
+
+  align-items: center;
+}
+
+/*This code block manages the apperence of the 'Lofi Arcade' header on the website*/
+.heading {
+  width: 40%;
+  height: 15vh;
+
+  text-align: center;
+  /*--glow-color: rgba(255, 255, 255, 0.555); */
+  --glow-color: black;
+  text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color),
+    0 0 40px var(--glow-color), 0 0 80px var(--glow-color),
+    0 0 120px var(--glow-color);
+  font-size: 3rem;
+
+  -webkit-text-fill-color: white;
+  /* -webkit-text-stroke-width: 0.1em; */
+  /* -webkit-text-stroke-color: black; */
+
+  animation: pulse 3s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+dialog {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden;
+
+  background-color: rgb(20, 20, 85);
+  opacity: 0.9;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+#scroll-picker {
+  width: 300px;
+  height: 100%;
+  /*   border: 1px solid black; */
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.scroll-picker__option {
+  box-sizing: border-box;
+  font-size: 28px;
+}
+
+#scroll-picker__options-wrapper {
+  border-top: 2px solid grey;
+  border-bottom: 2px solid grey;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+#scroll-picker__options-clone-wrapper {
+  position: absolute;
+  overflow: visible;
+  width: 100%;
+}
+
+.user-query::backdrop {
+  background: rgb(0 0 0 / 0.4);
+  backdrop-filter: blur(8px);
+  /* backdrop-filter: sepia(80%); */
+}
+
+/* This code block manages the apperence of the game buttons individually*/
+.game {
+  border: 4px white solid;
+  border-radius: 30px;
+
+  --glow-color: rgba(255, 255, 255, 0.555);
+  box-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color),
+    0 0 40px var(--glow-color), 0 0 80px var(--glow-color),
+    0 0 120px var(--glow-color);
+
+  width: 25%;
+
+  overflow: hidden;
+
+  transition: 300ms ease-in-out;
+}
+
+.game:hover {
+  transform: scale(1.2);
+}
+
+/* This code block manages the game buttons section as a whole*/
+.game-buttons {
+  display: flex;
+  /* border: 5px black solid; */
+  justify-content: space-around;
+
+  /* height: 50%; */
+
+  /* margin-top: 15vh; */
+}
+
+/* This code block manages the apperence of the images displayed in the game button borders */
+.img {
+  width: 100%;
+  height: 100%;
+}
+
+/* This code block manages the border surrounding the play button and song title within the music player */
+.music {
+  border: 4px yellow solid;
+  display: flex;
+}
+
+/* This code block manages the entire music-player section as a whole */
+.music-player-box {
+  display: flex;
+  justify-items: flex-end;
+}
+
+.music-player {
+  width: 1500px;
+  height: 60%;
+  padding: 0;
+
+  --glow-color: #ddb6b6;
+  box-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color),
+    0 0 40px var(--glow-color), 0 0 80px var(--glow-color),
+    0 0 120px var(--glow-color);
+
+  /* adds 3D shadow effect: background-color: #985454;*/
+  background-color: #ad6060;
+}
+
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  max-height: 100%;
+  z-index: -100;
+  object-fit: cover;
+}
