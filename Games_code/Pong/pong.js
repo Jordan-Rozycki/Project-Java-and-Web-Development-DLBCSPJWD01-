@@ -14,7 +14,7 @@ let player1 = {
     y : boardHeight/2,
     width: playerWidth,
     height: playerHeight,
-    velocityY : 1.5
+    velocityY : 1.75
 }
 
 let player2 = {
